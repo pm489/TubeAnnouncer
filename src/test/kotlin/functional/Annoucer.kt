@@ -6,7 +6,7 @@ import com.natpryce.hamkrest.equalTo
 class AnnouncerTest{
 
     @org.junit.Test
-    fun `can call announce at correct time`() {
+    fun `can call announce`() {
         val textToVoice  = FakeTextToVoice()
 
         Announcer(textToVoice, TubeLine("what-ever"), TubeStop("some-stop")).go()

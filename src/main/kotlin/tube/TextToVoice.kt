@@ -1,0 +1,4 @@
+package tube
+
+interface TextToVoice {
+}

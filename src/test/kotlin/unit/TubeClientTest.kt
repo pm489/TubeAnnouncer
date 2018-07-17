@@ -5,11 +5,10 @@ import com.natpryce.hamkrest.equalTo
 import org.http4k.core.Response
 import org.http4k.core.Status
 import org.junit.Test
+import tube.TimeToLocation
 import tube.TubeClient
 import tube.TubeLine
 import tube.TubeStop
-import java.time.LocalDateTime
-import java.time.Month
 
 class TubeClientTest{
     @Test
@@ -18,7 +17,7 @@ class TubeClientTest{
 
         val nextArrivalTimeFor = tubeClient.getNextArrivalTimeFor(TubeLine("someLine"), TubeStop("someStop"))
 
-        assertThat(nextArrivalTimeFor, equalTo(LocalDateTime.of(2018, Month.JULY,17, 16, 12, 7)))
+        assertThat(nextArrivalTimeFor, equalTo(TimeToLocation(104)))
 
     }
 }

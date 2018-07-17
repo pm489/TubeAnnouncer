@@ -1,6 +1,6 @@
 package tube
 
-class Announcer(val textToVoice: TextToVoice, val line: TubeLine, val stop: TubeStop) {
+class Announcer(val textToVoice: TextToVoice, val line: TubeLine, val stop: TubeStop, val tubeApi: TubeClient) {
     fun go() {
         textToVoice.announce("Next train has arrived")
     }

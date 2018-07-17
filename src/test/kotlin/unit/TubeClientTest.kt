@@ -6,18 +6,18 @@ import org.http4k.core.Response
 import org.http4k.core.Status
 import org.junit.Test
 import tube.TimeToLocation
-import tube.TubeClient
+import tube.HttpTubeClient
 import tube.TubeLine
 import tube.TubeStop
 
 class TubeClientTest{
     @Test
     fun `can return first LocalDateTime for train`() {
-        val tubeClient = TubeClient({ r -> Response(Status.OK).body(String(this.javaClass.getResourceAsStream("/nextTube.json").readBytes())) })
+        val tubeClient = HttpTubeClient({ r -> Response(Status.OK).body(String(this.javaClass.getResourceAsStream("/nextTube.json").readBytes())) })
 
         val nextArrivalTimeFor = tubeClient.getNextArrivalTimeFor(TubeLine("someLine"), TubeStop("someStop"))
 
-        assertThat(nextArrivalTimeFor, equalTo(TimeToLocation(104)))
+        assertThat(nextArrivalTimeFor, equalTo(TimeToLocation(1)))
 
     }
 }

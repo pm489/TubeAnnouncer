@@ -11,13 +11,12 @@ class AnnouncerTest{
     @org.junit.Test
     fun `can call announce at the correct time`() {
         val fakeTextToVoice  = FakeTextToVoice()
-        val tubeApi = TubeClient({ Response(Status.OK).body(String(this.javaClass.getResourceAsStream("/nextTube.json").readBytes())) })
-        Announcer(fakeTextToVoice, TubeLine("what-ever"), TubeStop("some-stop"), tubeApi).go()
+        val fakeTubeClient = HttpTubeClient({ r -> Response(Status.OK).body(String(this.javaClass.getResourceAsStream("/nextTube.json").readBytes())) })
+        Announcer(fakeTextToVoice, TubeLine("what-ever"), TubeStop("some-stop"), fakeTubeClient).go()
 
         assertThat(fakeTextToVoice.called, equalTo(1))
     }
 }
-
 
 class FakeTextToVoice : TextToVoice {
     var called = 0

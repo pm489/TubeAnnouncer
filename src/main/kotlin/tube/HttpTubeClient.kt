@@ -3,11 +3,12 @@ import com.fasterxml.jackson.module.kotlin.*
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method
 
-class TubeClient(private val client: HttpHandler) {
+
+class HttpTubeClient(private val client: HttpHandler) {
 
     fun getNextArrivalTimeFor(line: TubeLine, stop: TubeStop) : TimeToLocation {
 
-        val response = client(org.http4k.core.Request(Method.GET, "https://api.tfl.gov.uk/Line/$line/Arrivals/$stop"))
+        val response = client(org.http4k.core.Request(Method.GET, "https://api.tfl.gov.uk/Line/${line.value}/Arrivals/${stop.value}"))
 
         val mapper = jacksonObjectMapper()
 
